@@ -26,10 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[url('/bgPic.png')] bg-cover bg-center bg-no-repeat`}
       >
-        {/* <img src="/Presentation_1.jpg" className=" " alt="" /> */}
-        <div className="w-screen h-screen grid grid-cols-[250px_1fr] gap-4">
+        <div className="w-screen h-screen grid grid-cols-[250px_1fr] gap-4 backdrop-blur-[100px] bg-white/10">
           <Sidebar />
           <div className="py-20 pt-3">{children}</div> 
         </div>
