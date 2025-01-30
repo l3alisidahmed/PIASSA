@@ -2,7 +2,7 @@ interface FormInputProps {
     label: string;
     type: string;
     placeholder: string;
-    value: string;
+    value?: string;
     width: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -16,7 +16,7 @@ const FormInput : React.FC<FormInputProps> = ({label, type, placeholder, value, 
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className={`px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#FF3D00] ${width} shadow-md`}
+                className={`px-4 py-2 text-black border border-gray-300 rounded-lg focus:outline-none focus:border-[#FF3D00] ${width} shadow-md`}
             />
         </div>
     );

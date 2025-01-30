@@ -9,31 +9,31 @@ const Form = ({onClose} : {onClose: () => void}) => {
     const [status, setStatus] = useState(false);
 
     return (
-        <div className="grid grid-rows-[100px_3fr_1fr] gap-4 p-5 text-white rounded-lg">
+        <div className="grid grid-rows-[100px_3fr_1fr] gap-4 p-5 rounded-lg">
             <div className="flex flex-col items-center text-gray-400">
                 <h1 className="text-2xl">Create New Partners</h1>
             </div>
             <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-4">
                     <div className="grid grid-cols-2 gap-4">
-                        <FormInput label="First Name" type="text" placeholder="First Name" value="" width="w-full" onChange={() => {}} />
-                        <FormInput label="Last Name" type="text" placeholder="Last Name" value="" width="w-full" onChange={() => {}} />
+                        <FormInput label="First Name" type="text" placeholder="First Name" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
+                        <FormInput label="Last Name" type="text" placeholder="Last Name" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
                     </div>
-                    <FormInput label="Store Name" type="Text" placeholder="Enter Value" value="" width="w-full" onChange={() => {}} />
-                    <FormInput label="Email" type="email" placeholder="Enter Email" value="" width="w-full" onChange={() => {}} />
-                    <FormInput label="Password" type="password" placeholder="Enter Password" value="" width="w-full" onChange={() => {}} />
+                    <FormInput label="Store Name" type="Text" placeholder="Enter Value" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
+                    <FormInput label="Email" type="email" placeholder="Enter Email" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
+                    <FormInput label="Password" type="password" placeholder="Enter Password" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Phone Number 01</label>
                         <div className="grid grid-cols-[100px_1fr] gap-4 justify-center items-center">
                             <Select shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title={'+213'} options={["op1", "op2", "op3"]} bgColor="bg-white" isDisabled={true} />
-                            <FormInput label="" type="text" placeholder="Enter Phone" value="" width="w-full" onChange={() => {}} />
+                            <FormInput label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
                         </div>
                     </div>
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Phone Number 01</label>
                         <div className="grid grid-cols-[100px_1fr] gap-4 items-center">
                             <Select shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title={'+213'} options={["op1", "op2", "op3"]} bgColor="bg-white" isDisabled={true} />
-                            <FormInput label="" type="text" placeholder="Enter Phone" value="" width="w-full" onChange={() => {}} />
+                            <FormInput label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ const Form = ({onClose} : {onClose: () => void}) => {
                         <label className="text-sm text-[#44536F]">Commune</label>
                         <Select shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Commune" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} />
                     </div>
-                    <FormInput label="Address" type="text" placeholder="Enter Address" value="" width="w-full" onChange={() => {}} />
+                    <FormInput label="Address" type="text" placeholder="Enter Address" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Speciality</label>
                         <Select shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Speciality" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} />
