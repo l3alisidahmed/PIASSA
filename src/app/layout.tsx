@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* <img src="/Presentation_1.jpg" className=" " alt="" /> */}
-        <div className="w-screen h-screen grid grid-cols-[160px_1fr] gap-4">
+        <div className="w-screen h-screen grid grid-cols-[250px_1fr] gap-4">
           <Sidebar />
           <div className="py-20 pt-3">{children}</div> 
         </div>
