@@ -12,9 +12,24 @@ interface SelectProps {
     borderWidth?: string;
     borderStyle?: string;
     width?: string;
+    zIndex?: string;
+    textColor?: string;
+    shadow?: string;
 }
 
-const Select : React.FC<SelectProps> = ({title, options, isDisabled, width, bgColor, borderWidth, borderStyle, borderColor}) => {
+const Select : React.FC<SelectProps> = ({
+        title, 
+        options, 
+        isDisabled, 
+        width, 
+        bgColor, 
+        borderWidth, 
+        borderStyle, 
+        borderColor, 
+        zIndex,
+        textColor,
+        shadow
+    }) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<String | null>(null);
@@ -27,16 +42,16 @@ const Select : React.FC<SelectProps> = ({title, options, isDisabled, width, bgCo
     }
 
     return (
-        <div className={`relative ${width || 'w-[200px]'}`} ref={dropDownRef}>
+        <div className={`relative ${width || 'w-[200px]'} ${zIndex}`} ref={dropDownRef}>
             <button 
-                className={`w-full flex flex-row justify-around items-center gap-2 ${isOpen ? 'bg-white/60' : isDisabled ? bgColor : 'bg-black/15'} p-2 ${isOpen ? 'rounded-t-md' : 'rounded-md'} ${borderWidth} ${borderStyle} ${borderColor}`} 
+                className={`w-full flex flex-row justify-between items-center gap-2 ${isOpen ? 'bg-white/60' : isDisabled ? bgColor : 'bg-black/15'} p-2 ${isOpen ? 'rounded-t-md' : 'rounded-md'} ${borderWidth} ${borderStyle} ${borderColor} ${shadow} cursor-pointer`} 
                 onClick={() => setIsOpen(!isOpen)}
                 aria-haspopup='listbox'
                 aria-expanded={isOpen}
             >
                 {isDisabled ? null : <MapPin size={16} />}
-                <p>{selectedOption ? selectedOption : title}</p>
-                <ChevronDown size={16} className={`transition-transform ${isOpen ? 'transform rotate-180' : null}`} />
+                <p className={textColor}>{selectedOption ? selectedOption : title}</p>
+                <ChevronDown size={16} className={`${textColor} transition-transform ${isOpen ? 'transform rotate-180' : null}`} />
             </button>
             {isOpen && ( 
                 <div className="absolute w-full z-10 bg-white/60 shadow-lg rounded-b-md">
