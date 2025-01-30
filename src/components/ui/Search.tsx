@@ -10,13 +10,14 @@ const Search = () => {
     };
     
     return (
-        <div className="search flex flex-row items-center gap-5 bg-black/10 p-2">
+        <div className="flex flex-row items-center gap-5 bg-black/15 p-2 rounded-sm">
             <img src="/Logo.png" alt="" />
+            <p>|</p>
             <input
+                className='bg-transparent outline-none border-none text-white w-96'
                 type="text"
                 placeholder="Search products..."
                 value={search}
-                style={{ width: '500px', backgroundColor: 'transparent', outline: 'none', border: 'none', color: 'white' }}
                 onChange={handleSearch}
             />
         </div>
