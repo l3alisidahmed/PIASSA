@@ -6,8 +6,13 @@ import TopBar from "@/components/ui/TopBar";
 import { Plus } from "lucide-react";
 import { data } from "@/components/data";
 import IconCard from "@/components/ui/IconCard";
+import { useState } from "react";
+import Modal from "@/components/ui/Modal";
 
 export default function Home() {
+
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <div className="flex flex-col">
       <div className="grid grid-cols-[1fr_100px] gap-5">
@@ -18,9 +23,10 @@ export default function Home() {
               title="Ajouter Nouvel Partners" 
               icon={<Plus size={30} />} 
               bgColor="bg-[#FF3D00]" 
-              onClick={() => console.log("Button Clicked")} 
+              onClick={() => setShowModal(true)} 
             />
           </div>
+          <Modal showModal={showModal} onClose={() => setShowModal(false)}/>
         </div>
         <div>
           <IconCard opacity="opacity-0" />
