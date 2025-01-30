@@ -19,7 +19,8 @@ export const data = [
                     borderWidth="border" 
                     borderStyle="border-solid" 
                     borderColor="border-black" 
-                    options={["speciality 1", "speciality 2", "speciality 3"]} 
+                    options={["speciality 1", "speciality 2", "speciality 3"]}
+                    zIndex={"z-0"}
                 />,
       wilaya: "wilaya 1",
     },
@@ -42,6 +43,7 @@ export const data = [
                     borderStyle="border-solid" 
                     borderColor="border-black" 
                     options={["speciality 1", "speciality 2", "speciality 3"]} 
+                    zIndex={"z-0"}
                 />,
       wilaya: "wilaya 1",
     },
@@ -64,6 +66,7 @@ export const data = [
                     borderStyle="border-solid" 
                     borderColor="border-black" 
                     options={["speciality 1", "speciality 2", "speciality 3"]} 
+                    zIndex={"z-0"}
                 />,
       wilaya: "wilaya 1",
     },
@@ -86,6 +89,7 @@ export const data = [
                     borderStyle="border-solid" 
                     borderColor="border-black" 
                     options={["speciality 1", "speciality 2", "speciality 3"]} 
+                    zIndex={"z-0"}
                 />,
       wilaya: "wilaya 1",
     },
@@ -108,6 +112,7 @@ export const data = [
                     borderStyle="border-solid" 
                     borderColor="border-black" 
                     options={["speciality 1", "speciality 2", "speciality 3"]} 
+                    zIndex={"z-0"}
                 />,
       wilaya: "wilaya 1",
     },
