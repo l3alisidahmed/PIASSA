@@ -15,6 +15,7 @@ interface SelectProps {
     zIndex?: string;
     textColor?: string;
     shadow?: string;
+    onSelect? : (e: any) => void;
 }
 
 const Select : React.FC<SelectProps> = ({
@@ -28,7 +29,8 @@ const Select : React.FC<SelectProps> = ({
         borderColor, 
         zIndex,
         textColor,
-        shadow
+        shadow,
+        onSelect
     }) => {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +38,8 @@ const Select : React.FC<SelectProps> = ({
     
     const dropDownRef = useRef<HTMLDivElement>(null);
 
-    const handleSelect = (option: String) => {
+    const handleSelect = (e: any,option: String) => {
+        onSelect && onSelect(e);
         setSelectedOption(option);
         setIsOpen(false);
     }
@@ -44,7 +47,22 @@ const Select : React.FC<SelectProps> = ({
     return (
         <div className={`relative ${width || 'w-[200px]'} ${zIndex}`} ref={dropDownRef}>
             <button 
-                className={`w-full flex flex-row justify-between items-center gap-2 ${isOpen ? 'bg-white/60' : isDisabled ? bgColor : 'bg-black/15'} p-2 ${isOpen ? 'rounded-t-md' : 'rounded-md'} ${borderWidth} ${borderStyle} ${borderColor} ${shadow} cursor-pointer`} 
+                className={`
+                    w-full 
+                    flex 
+                    flex-row 
+                    justify-between 
+                    items-center 
+                    gap-2 
+                    ${isOpen ? 'bg-white/60' : isDisabled ? bgColor : 'bg-black/15'} 
+                    p-2 
+                    ${isOpen ? 'rounded-t-md' : 'rounded-md'} 
+                    ${borderWidth} 
+                    ${borderStyle} 
+                    ${borderColor} 
+                    ${shadow} 
+                    cursor-pointer
+                `} 
                 onClick={() => setIsOpen(!isOpen)}
                 aria-haspopup='listbox'
                 aria-expanded={isOpen}
@@ -59,8 +77,8 @@ const Select : React.FC<SelectProps> = ({
                         {options.map((option, index) => (
                             <li 
                                 key={index} 
-                                className="p-3 hover:bg-[#FF3D00]" 
-                                onClick={() => handleSelect(option)}
+                                className="p-3 hover:bg-[#FF3D00]"
+                                onClick={(e) => {handleSelect(e,option)}}
                             >
                                 {option}
                             </li>
