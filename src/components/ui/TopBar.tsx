@@ -26,7 +26,7 @@ const TopBar = () => {
         <div className="h-20 flex flex-row items-center justify-between px-5">
             <div className="flex flex-row items-center gap-5">
                 <Search />
-                <Select title="Select Wilaya" options={Options}/>
+                <Select key="Top-Bar-key" title="Select Wilaya" options={Options}/>
             </div>
             <div className="flex flex-row items-center gap-5">
                 <div>
