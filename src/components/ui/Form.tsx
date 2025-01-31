@@ -3,10 +3,16 @@
 import { useState } from "react";
 import FormInput from "./FormInput";
 import Select from "./Select";
-import { ToggleLeft, ToggleRight } from "lucide-react";
+import { Phone, Store, ToggleLeft, ToggleRight } from "lucide-react";
+import { useForm } from "@/providers/FormProvider";
 
 const Form = ({onClose} : {onClose: () => void}) => {
-    const [status, setStatus] = useState(false);
+    
+    const [status, setStatus] = useState(false); // for icon status
+    const [errors, setErrors] = useState(); // for display errors if there is any
+
+    const { formState, updateFormState, addPertner } = useForm();
+
 
     return (
         <div className="grid grid-rows-[100px_3fr_1fr] gap-4 p-5 rounded-lg">
@@ -16,44 +22,44 @@ const Form = ({onClose} : {onClose: () => void}) => {
             <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-4">
                     <div className="grid grid-cols-2 gap-4">
-                        <FormInput label="First Name" type="text" placeholder="First Name" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
-                        <FormInput label="Last Name" type="text" placeholder="Last Name" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
+                        <FormInput label="First Name" type="text" placeholder="First Name" width="w-full" onChange={(e) => {updateFormState('firstName', e.target.value)}} />
+                        <FormInput label="Last Name" type="text" placeholder="Last Name" width="w-full" onChange={(e) => {updateFormState('lastName', e.target.value)}} />
                     </div>
-                    <FormInput label="Store Name" type="Text" placeholder="Enter Value" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
-                    <FormInput label="Email" type="email" placeholder="Enter Email" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
-                    <FormInput label="Password" type="password" placeholder="Enter Password" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
+                    <FormInput label="Store Name" type="Text" placeholder="Enter Value" width="w-full" onChange={(e) => {updateFormState('storeName', e.target.value)}} />
+                    <FormInput label="Email" type="email" placeholder="Enter Email" width="w-full" onChange={(e) => {updateFormState('email', e.target.value)}} />
+                    <FormInput label="Password" type="password" placeholder="Enter Password" width="w-full" onChange={(e) => {updateFormState('password', e.target.value)}} />
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Phone Number 01</label>
                         <div className="grid grid-cols-[100px_1fr] gap-4 justify-center items-center">
-                            <Select shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title={'+213'} options={["op1", "op2", "op3"]} bgColor="bg-white" isDisabled={true} />
-                            <FormInput label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
+                            <Select key="form-select-key" shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title={'+213'} options={["op1", "op2", "op3"]} bgColor="bg-white" isDisabled={true} onSelect={(e) => updateFormState('countryNumber_1', e.target.innerHTML)} />
+                            <FormInput label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {updateFormState('phone_1', e.target.value)}} />
                         </div>
                     </div>
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Phone Number 01</label>
                         <div className="grid grid-cols-[100px_1fr] gap-4 items-center">
-                            <Select shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title={'+213'} options={["op1", "op2", "op3"]} bgColor="bg-white" isDisabled={true} />
-                            <FormInput label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
+                            <Select key="form-select-key" shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title={'+213'} options={["op1", "op2", "op3"]} bgColor="bg-white" isDisabled={true} onSelect={(e) => updateFormState('countryNumber_2', e.target.innerHTML)} />
+                            <FormInput label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {updateFormState('phone_2', e.target.value)}} />
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Wilaya</label>
-                        <Select shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Wilaya" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} />
+                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Wilaya" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('wilaya', e.target.innerHTML)} />
                     </div>
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Commune</label>
-                        <Select shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Commune" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} />
+                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Commune" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('commune', e.target.innerHTML)} />
                     </div>
-                    <FormInput label="Address" type="text" placeholder="Enter Address" width="w-full" onChange={(e) => {console.log(e.target.value)}} />
+                    <FormInput label="Address" type="text" placeholder="Enter Address" width="w-full" onChange={(e) => {updateFormState('address', e.target.value)}} />
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Speciality</label>
-                        <Select shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Speciality" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} />
+                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Speciality" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('speciality', e.target.innerHTML)} />                 
                     </div>
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Start Date</label>
-                        <Select shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Start Date" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} />
+                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Start Date" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('startDate', e.target.innerHTML)} />
                     </div>
                 </div>
             </div>
@@ -68,10 +74,10 @@ const Form = ({onClose} : {onClose: () => void}) => {
                 </div>
                 <hr className="border-gray-400" />
                 <div className="flex flex-row justify-evenly gap-4">
-                    <Select shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="EN | Language" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-[200px]" isDisabled={true} />
+                    <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="EN | Language" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-[200px]" isDisabled={true} onSelect={(e) => updateFormState('language', e.target.innerHTML)} />
                     <div className="flex flex-row gap-4">
                         <button className="bg-gray-400/50 text-white px-4 py-2 rounded-md" onClick={() => onClose()}>Cancel</button>
-                        <button className="bg-[#FF3D00] text-white px-4 py-2 rounded-md">Create</button>
+                        <button className="bg-[#FF3D00] text-white px-4 py-2 rounded-md" onClick={() => addPertner({...formState, Phone: [`${formState.countryNumber_1}${formState.phone_1}`, `${formState.countryNumber_2}${formState.phone_2}`], status: 'active', Store: {id: '12', name: formState.storeName}})}>Create</button>
                     </div>
                 </div>
             </div>
