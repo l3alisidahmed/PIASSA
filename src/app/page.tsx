@@ -4,10 +4,10 @@ import Button from "@/components/ui/Button";
 import Table from "@/components/ui/Table";
 import TopBar from "@/components/ui/TopBar";
 import { Plus } from "lucide-react";
-import { data } from "@/components/data";
 import IconCard from "@/components/ui/IconCard";
 import { useState } from "react";
 import Modal from "@/components/ui/Modal";
+
 
 export default function Home() {
 
@@ -32,7 +32,7 @@ export default function Home() {
           <IconCard opacity="opacity-0" />
         </div>
       </div>
-      <Table data={data} />
+      <Table />
     </div>
   );
 }
