@@ -1,16 +1,14 @@
 'use client';
 
 import { useRef, useState } from "react";
-import { ChevronRight, Pencil, Eye, Trash2, CircleHelp, Icon } from "lucide-react";
+import { ChevronRight, Pencil, Eye, Trash2, ChevronLeft} from "lucide-react";
 import IconCard from "./IconCard";
 import Select from "./Select";
-import Modal from "./Modal";
-import Form from "./Form";
-import { VerticalBarChart } from "./VerticalBarChart";
 import Edit from "./Edit";
 import View from "./View";
 import Delete from "./Delete";
-
+import * as motion from "motion/react-client";
+import ExitAnimation from "./ExitAnimation";
 
 
 const PartnerCard = ({ partner, partnerKey }: { partnerKey?: any, partner: any }) => {
@@ -59,20 +57,30 @@ const PartnerCard = ({ partner, partnerKey }: { partnerKey?: any, partner: any }
                 </div>
                 <div className="relative w-full flex flex-row items-center" ref={dropDownRef}>
                     <button onClick={() => handleClicked()} aria-haspopup='listbox' aria-expanded={isOpen}>
-                        <IconCard icon={<ChevronRight size={30} />} bgColor="rgba(255, 255, 255, 0.3)" />
+                        <IconCard icon={isOpen ? <ChevronLeft size={30}/> : <ChevronRight size={30} />} bgColor="rgba(255, 255, 255, 0.3)" />
                     </button>
                     {isOpen ? (
-                        <div className="absolute right-10 flex flex-row gap-2">
+                        <motion.div initial={{x: -150 }} animate={{x:0}} transition={{stiffness: 120}} exit={{x:100}} className="absolute right-10 flex flex-row gap-2">
                             <IconCard icon={<Pencil size={30} />} bgColor="rgba(255, 255, 255, 0.3)" onClick={() => {setEdit(!edit);setRemove(false);setView(false);}} />
                             <IconCard icon={<Eye size={30} />} bgColor="rgba(255, 255, 255, 0.3)" onClick={() => {setView(!view);setRemove(false);setEdit(false);}} />
                             <IconCard icon={<Trash2 size={30} />} bgColor="rgba(255, 255, 255, 0.3)" onClick={() => {setRemove(!remove);setEdit(false);setView(false);}} />
-                        </div>
+                        </motion.div>
                     ) : null}
                 </div>
             </div>
-            {view && <View />}
-            {edit && <Edit onClose={() => setEdit(false)} />}
-            {remove && <Delete remove={remove} onClose={() => setRemove(false)} />}
+            {view && 
+                <ExitAnimation>
+                    <View />
+                </ExitAnimation>
+            }
+            {edit &&
+                <ExitAnimation> 
+                    <Edit onClose={() => setEdit(false)} />
+                </ExitAnimation>
+            }
+            {remove &&
+                <Delete remove={remove} onClose={() => setRemove(false)} />
+            }
         </>
     );
 }
