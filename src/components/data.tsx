@@ -1,0 +1,67 @@
+export const data = [
+    {
+      name: "hamza 1234",
+      email: "hamza1234@gmail.com",
+      phone: ["0555555555"],
+      startDate: "2021-09-20",
+      store: {
+        id: "1234",
+        name: "store 1",
+      },
+      status: "active",
+      speciality: 'speciality 1',
+      wilaya: "wilaya 1",
+    },
+    {
+      name: "hamza 1234",
+      email: "hamza1234@gmail.com",
+      phone: ["0555555555"],
+      startDate: "2021-09-20",
+      store: {
+        id: "1234",
+        name: "store 1",
+      },
+      status: "active",
+      speciality: 'speciality 1',
+      wilaya: "wilaya 1",
+    },
+    {
+      name: "hamza 1234",
+      email: "hamza1234@gmail.com",
+      phone: ["0555555555"],
+      startDate: "2021-09-20",
+      store: {
+        id: "1234",
+        name: "store 1",
+      },
+      status: "active",
+      speciality: 'speciality 1',
+      wilaya: "wilaya 1",
+    },
+    {
+      name: "hamza 1234",
+      email: "hamza1234@gmail.com",
+      phone: ["0555555555"],
+      startDate: "2021-09-20",
+      store: {
+        id: "1234",
+        name: "store 1",
+      },
+      status: "active",
+      speciality: 'speciality 1',
+      wilaya: "wilaya 1",
+    },
+    {
+      name: "hamza 1234",
+      email: "hamza1234@gmail.com",
+      phone: ["0555555555"],
+      startDate: "2021-09-20",
+      store: {
+        id: "1234",
+        name: "store 1",
+      },
+      status: "active",
+      speciality: 'speciality 1',
+      wilaya: "wilaya 1",
+    },
+  ];

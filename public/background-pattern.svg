@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+  <!-- Base background -->
+  <rect width="100%" height="100%" fill="#E74C3C"/>
+  
+  <!-- Organic flowing shapes -->
+  <path d="M-100,300 Q150,100 300,400 T600,300 T900,400" 
+        fill="none" 
+        stroke="#D64433" 
+        stroke-width="200" 
+        opacity="0.4"/>
+  
+  <path d="M-50,200 Q250,500 500,200 T900,300" 
+        fill="none" 
+        stroke="#C0392B" 
+        stroke-width="180" 
+        opacity="0.3"/>
+        
+  <circle cx="800" cy="100" r="100" 
+          fill="#D64433" 
+          opacity="0.2"/>
+          
+  <circle cx="100" cy="500" r="150" 
+          fill="#C0392B" 
+          opacity="0.2"/>
+          
+  <!-- Additional organic shapes -->
+  <path d="M300,600 Q450,450 600,600" 
+        fill="none" 
+        stroke="#D64433" 
+        stroke-width="150" 
+        opacity="0.3"/>
+        
+  <path d="M800,0 Q900,150 1000,0" 
+        fill="none" 
+        stroke="#C0392B" 
+        stroke-width="120" 
+        opacity="0.2"/>
+</svg>
