@@ -48,7 +48,7 @@ export const data = {
 
 export function VerticalBarChart() {
   return (
-        <div className='bg-white'>
+        <div className='bg-white flex flex-row justify-center'>
             <Bar options={options} data={data} />
         </div>
     );
