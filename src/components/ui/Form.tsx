@@ -6,7 +6,7 @@ import Select from "./Select";
 import { Phone, Store, ToggleLeft, ToggleRight } from "lucide-react";
 import { useForm } from "@/providers/FormProvider";
 
-const Form = ({onClose} : {onClose: () => void}) => {
+const Form = ({onClose, Edit} : {Edit?: Boolean, onClose: () => void}) => {
     
     const [status, setStatus] = useState(false); // for icon status
     const [errors, setErrors] = useState(); // for display errors if there is any
@@ -15,9 +15,16 @@ const Form = ({onClose} : {onClose: () => void}) => {
 
 
     return (
-        <div className="grid grid-rows-[100px_3fr_1fr] gap-4 p-5 rounded-lg">
-            <div className="flex flex-col items-center text-gray-400">
-                <h1 className="text-2xl">Create New Partners</h1>
+        <div className="grid grid-rows-[fit-content_3fr_1fr] gap-4 p-5 rounded-lg">
+            <div className={`flex ${Edit ? 'flex-row justify-between' :'flex-col'} items-center text-gray-400`}>
+                {Edit ? (
+                    <>
+                        <h1 className="text-2xl">Edit Partners</h1>
+                        <p>Last Update</p>
+                    </>
+                ) : (
+                    <h1 className="text-2xl">Create New Partners</h1>
+                )}
             </div>
             <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-4">
