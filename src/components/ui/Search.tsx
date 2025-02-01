@@ -1,13 +1,11 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearch } from '@/providers/SearchProvider';
 
 const Search = () => {
-    const [search, setSearch] = useState('');
-    
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
-    };
+
+    const { search, setSearch } = useSearch();
     
     return (
         <div className="flex flex-row items-center gap-5 bg-black/15 p-2 rounded-sm">
@@ -18,7 +16,7 @@ const Search = () => {
                 type="text"
                 placeholder="Search products..."
                 value={search}
-                onChange={handleSearch}
+                onChange={(e) => setSearch(e.target.value)}
             />
         </div>
     );

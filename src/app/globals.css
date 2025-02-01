@@ -16,6 +16,10 @@
 
 body {
   color: var(--foreground);
-  background: var(--background);
   font-family: 'Roboto', sans-serif;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Hides scrollbar */
+}
+

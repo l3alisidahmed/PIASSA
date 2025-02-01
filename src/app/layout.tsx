@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/layouts/sidebar";
+import { FormProvider } from "@/providers/FormProvider";
+import SearchProvider from "@/providers/SearchProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,14 +26,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" style={{overflow: 'hidden'}}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[url('/bgPic.png')] bg-cover bg-center bg-no-repeat`}
       >
-        {/* <img src="/Presentation_1.jpg" className=" " alt="" /> */}
-        <div className="w-screen h-screen grid grid-cols-[250px_1fr] gap-4">
+        <div className="w-screen h-screen grid grid-cols-[250px_1fr] gap-4 backdrop-blur-[100px] bg-white/10">
           <Sidebar />
-          <div className="py-20 pt-3">{children}</div> 
+          <div className="pt-3">
+            <SearchProvider>
+              <FormProvider>
+                {children}
+              </FormProvider>
+            </SearchProvider>
+          </div> 
         </div>
       </body>
     </html>

@@ -6,31 +6,70 @@ import { MapPin, ChevronDown } from "lucide-react";
 interface SelectProps {
     title: string;
     options: String[];
+    isDisabled?: boolean;
+    bgColor?: string;
+    borderColor?: string;
+    borderWidth?: string;
+    borderStyle?: string;
+    width?: string;
+    zIndex?: string;
+    textColor?: string;
+    shadow?: string;
+    onSelect? : (e: any) => void;
 }
 
-const Select : React.FC<SelectProps> = ({title, options}) => {
+const Select : React.FC<SelectProps> = ({
+        title, 
+        options, 
+        isDisabled, 
+        width, 
+        bgColor, 
+        borderWidth, 
+        borderStyle, 
+        borderColor, 
+        zIndex,
+        textColor,
+        shadow,
+        onSelect
+    }) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<String | null>(null);
     
     const dropDownRef = useRef<HTMLDivElement>(null);
 
-    const handleSelect = (option: String) => {
+    const handleSelect = (e: any,option: String) => {
+        onSelect && onSelect(e);
         setSelectedOption(option);
         setIsOpen(false);
     }
 
     return (
-        <div className="relative w-[200px]" ref={dropDownRef}>
+        <div className={`relative ${width || 'w-[200px]'} ${zIndex}`} ref={dropDownRef}>
             <button 
-                className={`w-full flex flex-row justify-around items-center gap-2 ${isOpen ? 'bg-white/60' : 'bg-black/15'} p-2 ${isOpen ? 'rounded-t-md' : 'rounded-md'}`} 
+                className={`
+                    w-full 
+                    flex 
+                    flex-row 
+                    justify-between 
+                    items-center 
+                    gap-2 
+                    ${isOpen ? 'bg-white/60' : isDisabled ? bgColor : 'bg-black/15'} 
+                    p-2 
+                    ${isOpen ? 'rounded-t-md' : 'rounded-md'} 
+                    ${borderWidth} 
+                    ${borderStyle} 
+                    ${borderColor} 
+                    ${shadow} 
+                    cursor-pointer
+                `} 
                 onClick={() => setIsOpen(!isOpen)}
                 aria-haspopup='listbox'
                 aria-expanded={isOpen}
             >
-                <MapPin size={16} />
-                <p>{selectedOption ? selectedOption : title}</p>
-                <ChevronDown size={16} className={`transition-transform ${isOpen ? 'transform rotate-180' : null}`} />
+                {isDisabled ? null : <MapPin size={16} />}
+                <p className={textColor}>{selectedOption ? selectedOption : title}</p>
+                <ChevronDown size={16} className={`${textColor} transition-transform ${isOpen ? 'transform rotate-180' : null}`} />
             </button>
             {isOpen && ( 
                 <div className="absolute w-full z-10 bg-white/60 shadow-lg rounded-b-md">
@@ -38,8 +77,8 @@ const Select : React.FC<SelectProps> = ({title, options}) => {
                         {options.map((option, index) => (
                             <li 
                                 key={index} 
-                                className="p-3 hover:bg-[#FF3D00]" 
-                                onClick={() => handleSelect(option)}
+                                className="p-3 hover:bg-[#FF3D00]"
+                                onClick={(e) => {handleSelect(e,option)}}
                             >
                                 {option}
                             </li>

@@ -16,8 +16,7 @@ export default function Sidebar() {
 
             <div className="backdrop-blur-md bg-white/10 flex flex-col items-center justify-center p-2 rounded-full">
                 <IconCard 
-                    icon={
-                        <Handshake size={30} onClick={() => {setHandIconClicked(true); setTvIconClicked(false)}} />} 
+                    icon={<Handshake size={30} onClick={() => {setHandIconClicked(true); setTvIconClicked(false)}} />} 
                     bgColor={handIconClicked ? '#FF3D00' : undefined} 
                     rounded='rounded-t-full' 
                 />
