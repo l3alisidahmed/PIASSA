@@ -3,7 +3,7 @@
 import { useState } from "react";
 import IconCard from "../ui/IconCard";
 import Logo from "../ui/Logo";
-import {Handshake, LayoutDashboard, Car, Settings, TvMinimal, Minus, Power, Icon} from "lucide-react";
+import {Handshake, LayoutDashboard, Car, Settings, TvMinimal, Power} from "lucide-react";
 
 export default function Sidebar() {
 

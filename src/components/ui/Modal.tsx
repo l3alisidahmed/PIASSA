@@ -2,10 +2,10 @@ import * as motion from "motion/react-client"
 interface ModalProps {
     children?: React.ReactNode;
     showModal: boolean;
-    onClose: () => void;
+    onClose?: () => void;
 }
 
-const Modal : React.FC<ModalProps> = ({children, showModal, onClose}) => {
+const Modal : React.FC<ModalProps> = ({children, showModal}) => {
     if (!showModal) return null;
     
     return (

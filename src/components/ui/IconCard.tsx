@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 interface IconCardProps {
     icon?: React.ReactNode;
     bgColor?: string;
-    rounded?: String;
+    rounded?: string;
     opacity?: string;
     onClick?: () => void;
 }

@@ -9,9 +9,10 @@ import View from "./View";
 import Delete from "./Delete";
 import * as motion from "motion/react-client";
 import ExitAnimation from "./ExitAnimation";
+import { PartnerType } from "@/providers/FormProvider";
 
 
-const PartnerCard = ({ partner, partnerKey }: { partnerKey?: any, partner: any }) => {
+const PartnerCard = ({ partner, partnerKey }: { partnerKey?:string | number, partner: PartnerType }) => {
     
     const [isOpen, setIsOpen] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -37,7 +38,7 @@ const PartnerCard = ({ partner, partnerKey }: { partnerKey?: any, partner: any }
                         <p>{partner.wilaya}</p>
                     </div>
                     <div className="flex flex-col gap-2 justify-start">
-                        {partner.phone.map((phone:any, index:any) => (
+                        {partner.phone.map((phone:string, index:number) => (
                             <p key={index}>{phone}</p>
                         ))}
                     </div>

@@ -5,7 +5,7 @@ import { MapPin, ChevronDown } from "lucide-react";
 
 interface SelectProps {
     title: string;
-    options: String[];
+    options: string[];
     isDisabled?: boolean;
     bgColor?: string;
     borderColor?: string;
@@ -15,7 +15,7 @@ interface SelectProps {
     zIndex?: string;
     textColor?: string;
     shadow?: string;
-    onSelect? : (e: any) => void;
+    onSelect? : (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
 }
 
 const Select : React.FC<SelectProps> = ({
@@ -34,12 +34,12 @@ const Select : React.FC<SelectProps> = ({
     }) => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<String | null>(null);
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
     
     const dropDownRef = useRef<HTMLDivElement>(null);
 
-    const handleSelect = (e: any,option: String) => {
-        onSelect && onSelect(e);
+    const handleSelect = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, option: string) => {
+        if(onSelect) onSelect(e);
         setSelectedOption(option);
         setIsOpen(false);
     }

@@ -3,6 +3,17 @@
 import { createContext, useContext, useState } from "react";
 import { data } from "@/components/data";
 
+export interface PartnerType {
+    name: string;
+    email: string;
+    phone: string[];
+    startDate: string;
+    store: {id: string, name: string};
+    status: string;
+    speciality: string;
+    wilaya: string;
+}
+
 interface FormState {
     firstName: string;
     lastName: string;
@@ -42,10 +53,10 @@ const initialFormState: FormState = {
 
 interface FormContextType {
     formState: FormState;
-    partnerData: any[];
+    partnerData: PartnerType[];
     updateFormState: (key: keyof FormState, value: string) => void;
-    setPartnerData: (data: any) => void;
-    addPertner: (partner: any) => void;
+    setPartnerData: (data: PartnerType[]) => void;
+    addPertner: (partner: FormState) => void;
 }
 
 const FormContext = createContext<FormContextType | undefined>(undefined);
@@ -62,7 +73,7 @@ const FormProvider = ({ children }: { children: React.ReactNode }) => {
         }));
     };
 
-    const addPertner = (partner: any) => {
+    const addPertner = (partner: FormState) => {
         const {email, startDate, speciality, wilaya} = partner;
         const newPartner = {
             name: `${partner.firstName} ${partner.lastName}`,
