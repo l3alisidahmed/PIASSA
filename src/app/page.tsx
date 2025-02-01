@@ -7,6 +7,7 @@ import { Plus } from "lucide-react";
 import IconCard from "@/components/ui/IconCard";
 import { useState } from "react";
 import Modal from "@/components/ui/Modal";
+import Form from "@/components/ui/Form";
 
 
 export default function Home() {
@@ -26,7 +27,11 @@ export default function Home() {
               onClick={() => setShowModal(true)} 
             />
           </div>
-          <Modal showModal={showModal} onClose={() => setShowModal(false)}/>
+          <Modal showModal={showModal} onClose={() => setShowModal(false)}>
+            <div className="bg-white/80 shadow-lg backdrop-blur-[60px] p-10 rounded-lg">
+              <Form onClose={() => setShowModal(false)}/>
+            </div>
+          </Modal>
         </div>
         <div>
           <IconCard opacity="opacity-0" />
