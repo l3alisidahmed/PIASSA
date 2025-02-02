@@ -72,7 +72,7 @@ const Select : React.FC<SelectProps> = ({
                 <ChevronDown size={16} className={`${textColor} transition-transform ${isOpen ? 'transform rotate-180' : null}`} />
             </button>
             {isOpen && ( 
-                <div className="absolute w-full z-10 bg-white/60 shadow-lg rounded-b-md">
+                <div className="absolute w-full z-10 bg-white shadow-lg rounded-b-md text-black overflow-auto max-h-[630px] scrollbar-hide">
                     <ul role="listbox" tabIndex={0}>
                         {options.map((option, index) => (
                             <li 

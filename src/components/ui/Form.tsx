@@ -5,8 +5,9 @@ import FormInput from "./FormInput";
 import Select from "./Select";
 import { ToggleLeft, ToggleRight } from "lucide-react";
 import { useForm } from "@/providers/FormProvider";
+import { wilaya, Commune, language, phoneCode, speciality } from "../countryData";
 
-const Form = ({onClose, Edit} : {Edit?: boolean, onClose: () => void}) => {
+const Form = ({onClose, Edit, value} : {value: {[key: string]: string}, Edit?: boolean, onClose: () => void}) => {
     
     const [status, setStatus] = useState(false); // for icon status
 
@@ -28,44 +29,44 @@ const Form = ({onClose, Edit} : {Edit?: boolean, onClose: () => void}) => {
             <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-4">
                     <div className="grid grid-cols-2 gap-4">
-                        <FormInput label="First Name" type="text" placeholder="First Name" width="w-full" onChange={(e) => {updateFormState('firstName', e.target.value)}} />
-                        <FormInput label="Last Name" type="text" placeholder="Last Name" width="w-full" onChange={(e) => {updateFormState('lastName', e.target.value)}} />
+                        <FormInput value={Edit ? value.name.split(' ')[0] : formState.firstName} label="First Name" type="text" placeholder="First Name" width="w-full" onChange={(e) => {updateFormState('firstName', e.target.value)}} />
+                        <FormInput value={Edit ? value.name.split(' ')[1] : formState.lastName} label="Last Name" type="text" placeholder="Last Name" width="w-full" onChange={(e) => {updateFormState('lastName', e.target.value)}} />
                     </div>
-                    <FormInput label="Store Name" type="Text" placeholder="Enter Value" width="w-full" onChange={(e) => {updateFormState('storeName', e.target.value)}} />
-                    <FormInput label="Email" type="email" placeholder="Enter Email" width="w-full" onChange={(e) => {updateFormState('email', e.target.value)}} />
-                    <FormInput label="Password" type="password" placeholder="Enter Password" width="w-full" onChange={(e) => {updateFormState('password', e.target.value)}} />
+                    <FormInput value={Edit ? value.storeName : formState.storeName} label="Store Name" type="Text" placeholder="Enter Value" width="w-full" onChange={(e) => {updateFormState('storeName', e.target.value)}} />
+                    <FormInput value={Edit ? value.email : formState.email} label="Email" type="email" placeholder="Enter Email" width="w-full" onChange={(e) => {updateFormState('email', e.target.value)}} />
+                    <FormInput value={Edit ? value.password : formState.password} label="Password" type="password" placeholder="Enter Password" width="w-full" onChange={(e) => {updateFormState('password', e.target.value)}} />
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Phone Number 01</label>
                         <div className="grid grid-cols-[100px_1fr] gap-4 justify-center items-center">
-                            <Select key="form-select-key" shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title={'+213'} options={["op1", "op2", "op3"]} bgColor="bg-white" isDisabled={true} onSelect={(e) => updateFormState('countryNumber_1', (e.target as HTMLElement).innerHTML)} />
-                            <FormInput label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {updateFormState('phone_1', e.target.value)}} />
+                            <Select key="form-select-key" shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title={'+213'} options={phoneCode} bgColor="bg-white" isDisabled={true} onSelect={(e) => updateFormState('countryNumber_1', (e.target as HTMLElement).innerHTML)} />
+                            <FormInput value={Edit ? value.phone_1 : formState.phone_1} label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {updateFormState('phone_1', e.target.value)}} />
                         </div>
                     </div>
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Phone Number 01</label>
                         <div className="grid grid-cols-[100px_1fr] gap-4 items-center">
-                            <Select key="form-select-key" shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title={'+213'} options={["op1", "op2", "op3"]} bgColor="bg-white" isDisabled={true} onSelect={(e) => updateFormState('countryNumber_2', (e.target as HTMLElement).innerHTML)} />
-                            <FormInput label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {updateFormState('phone_2', e.target.value)}} />
+                            <Select key="form-select-key" shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title={'+213'} options={phoneCode} bgColor="bg-white" isDisabled={true} onSelect={(e) => updateFormState('countryNumber_2', (e.target as HTMLElement).innerHTML)} />
+                            <FormInput value={Edit ? value.phone_2 : formState.phone_2} label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {updateFormState('phone_2', e.target.value)}} />
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Wilaya</label>
-                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Wilaya" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('wilaya', (e.target as HTMLElement).innerHTML)} />
+                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title="Wilaya" options={wilaya} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('wilaya', (e.target as HTMLElement).innerHTML)} />
                     </div>
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Commune</label>
-                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Commune" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('commune', (e.target as HTMLElement).innerHTML)} />
+                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title="Commune" options={formState.wilaya ? Commune[formState.wilaya as keyof typeof Commune] : []} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('commune', (e.target as HTMLElement).innerHTML)} />
                     </div>
-                    <FormInput label="Address" type="text" placeholder="Enter Address" width="w-full" onChange={(e) => {updateFormState('address', e.target.value)}} />
+                    <FormInput value={Edit ? value.address : formState.address} label="Address" type="text" placeholder="Enter Address" width="w-full" onChange={(e) => {updateFormState('address', e.target.value)}} />
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Speciality</label>
-                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Speciality" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('speciality', (e.target as HTMLElement).innerHTML)} />                 
+                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title="Speciality" options={speciality} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('speciality', (e.target as HTMLElement).innerHTML)} />                 
                     </div>
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Start Date</label>
-                        <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="Start Date" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-full" isDisabled={true} onSelect={(e) => updateFormState('startDate', (e.target as HTMLElement).innerHTML)} />
+                        <FormInput value={Edit ? value.startDate : formState.startDate} label="" type="date" placeholder="Enter Date" width="w-full" onChange={(e) => {updateFormState('startDate', e.target.value)}} />
                     </div>
                 </div>
             </div>
@@ -80,10 +81,10 @@ const Form = ({onClose, Edit} : {Edit?: boolean, onClose: () => void}) => {
                 </div>
                 <hr className="border-gray-400" />
                 <div className="flex flex-row justify-evenly gap-4">
-                    <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-[#CACED8]" title="EN | Language" options={["op1", "op2", "op3"]} bgColor="bg-white" width="w-[200px]" isDisabled={true} onSelect={(e) => updateFormState('language', (e.target as HTMLElement).innerHTML)} />
+                    <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title="EN | Language" options={language} bgColor="bg-white" width="w-[200px]" isDisabled={true} onSelect={(e) => updateFormState('language', (e.target as HTMLElement).innerHTML)} />
                     <div className="flex flex-row gap-4">
                         <button className="bg-gray-400/50 text-white px-4 py-2 rounded-md" onClick={() => onClose()}>Cancel</button>
-                        <button className="bg-[#FF3D00] text-white px-4 py-2 rounded-md" onClick={() => addPertner({...formState})}>Create</button>
+                        <button className="bg-[#FF3D00] text-white px-4 py-2 rounded-md" onClick={() => {Edit ? console.log(formState) : addPertner({...formState})}}>Create</button>
                     </div>
                 </div>
             </div>
