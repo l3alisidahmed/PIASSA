@@ -21,10 +21,10 @@ const IconCard : FC<IconCardProps> = ({icon, bgColor, rounded, opacity, onClick}
                     const TogleTopIconButton = element.attributes[0].value.includes('rounded-t-full') && element;
                     const TogleBottomIconButton = element.attributes[0].value.includes('rounded-b-full') && element;
                     if (element !== iconButtonRef.current && element !== TogleTopIconButton && element !== TogleBottomIconButton) {
-                        element.style.backgroundColor = 'transparent';
+                        (element as HTMLElement).style.backgroundColor = 'transparent';
                     } else {
                         if (iconButtonRef.current) {
-                            iconButtonRef.current.style.backgroundColor = '#FF3D00';
+                            iconButtonRef.current.style.backgroundColor = '#FF3D00';;
                         }
                     }
                 });
