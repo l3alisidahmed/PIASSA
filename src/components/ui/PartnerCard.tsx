@@ -36,8 +36,6 @@ const PartnerCard = ({ partner, partnerKey }: { partnerKey?:string | number, par
             setEditData(data);
         }
 
-        console.log(editData);
-
     }, [isOpen])
 
     const handleClicked = () => {

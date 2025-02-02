@@ -5,7 +5,7 @@ import FormInput from "./FormInput";
 import Select from "./Select";
 import { ToggleLeft, ToggleRight } from "lucide-react";
 import { useForm } from "@/providers/FormProvider";
-import { wilaya, Commune, language, phoneCode, speciality } from "../countryData";
+import { wilaya, Commune, language, phoneCode, speciality } from "../data/countryData";
 
 interface FormProps {
     value?: {[key: string]: string};
@@ -123,7 +123,7 @@ const Form: React.FC<FormProps> = ({onClose, Edit, value}) => {
                     <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title="EN | Language" options={language} bgColor="bg-white" width="w-[200px]" isDisabled={true} onSelect={(e) => updateFormState('language', (e.target as HTMLElement).innerHTML)} />
                     <div className="flex flex-row gap-4">
                         <button className="bg-gray-400/50 text-white px-4 py-2 rounded-md" onClick={() => onClose()}>Cancel</button>
-                        <button className="bg-[#FF3D00] text-white px-4 py-2 rounded-md" onClick={() => {addPertner({...formState}); console.log(formState)}}>Create</button>
+                        <button className="bg-[#FF3D00] text-white px-4 py-2 rounded-md" onClick={() => {addPertner({...formState});}}>Create</button>
                     </div>
                 </div>
                 
