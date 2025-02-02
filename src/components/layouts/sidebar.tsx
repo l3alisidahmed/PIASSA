@@ -4,6 +4,7 @@ import { useState } from "react";
 import IconCard from "../ui/IconCard";
 import Logo from "../ui/Logo";
 import {Handshake, LayoutDashboard, Car, Settings, TvMinimal, Power} from "lucide-react";
+import Link from "next/link";
 
 export default function Sidebar() {
 
@@ -30,10 +31,18 @@ export default function Sidebar() {
             {handIconClicked ? 
                 <div className="flex flex-col items-center gap-5">
                     <div className="h-0.5 w-5 bg-[#FF3D00]"></div>
-                    <IconCard icon={<Handshake size={30} />} bgColor={handIconClicked ? '#FF3D00' : undefined} />
-                    <IconCard icon={<LayoutDashboard size={30} />} />
-                    <IconCard icon={<Car size={30} />} />
-                    <IconCard icon={<Settings size={30} />} />
+                    <Link href="/">
+                        <IconCard icon={<Handshake size={30} />} bgColor={handIconClicked ? '#FF3D00' : undefined} />
+                    </Link>
+                    <Link href="/soon">
+                        <IconCard icon={<LayoutDashboard size={30} />} />
+                    </Link>
+                    <Link href="/soon">
+                        <IconCard icon={<Car size={30} />} />
+                    </Link>
+                    <Link href="/soon">
+                        <IconCard icon={<Settings size={30} />} />
+                    </Link>
                     <div className="h-0.5 w-5 bg-[#FF3D00]"></div>
                 </div>
             : null}

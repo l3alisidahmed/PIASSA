@@ -5,19 +5,21 @@ import FormInput from "./FormInput";
 import Select from "./Select";
 import { ToggleLeft, ToggleRight } from "lucide-react";
 import { useForm } from "@/providers/FormProvider";
-import { wilaya, Commune, language, phoneCode, speciality } from "../countryData";
+import { wilaya, Commune, language, phoneCode, speciality } from "../data/countryData";
+import { useUpdate } from "@/providers/UpdateProvider";
 
 interface FormProps {
-    value?: {[key: string]: string};
     Edit?: boolean; 
     onClose: () => void;
 }
 
-const Form: React.FC<FormProps> = ({onClose, Edit, value}) => {
+const Form: React.FC<FormProps> = ({onClose, Edit}) => {
     
     const [status, setStatus] = useState(false); // for icon status
 
     const { formState, updateFormState, addPertner } = useForm();
+
+    const { updatedData } = useUpdate();
 
 
     return (
@@ -41,32 +43,32 @@ const Form: React.FC<FormProps> = ({onClose, Edit, value}) => {
 
                     {/* Name Section */}
                     <div className="grid grid-cols-2 gap-4">
-                        <FormInput value={Edit && value ? value.name.split(' ')[0] : formState.firstName} label="First Name" type="text" placeholder="First Name" width="w-full" onChange={(e) => {updateFormState('firstName', e.target.value)}} />
-                        <FormInput value={Edit && value ? value.name.split(' ')[1] : formState.lastName} label="Last Name" type="text" placeholder="Last Name" width="w-full" onChange={(e) => {updateFormState('lastName', e.target.value)}} />
+                        <FormInput value={Edit && updatedData ? updatedData.name.split(' ')[0] : formState.firstName} label="First Name" type="text" placeholder="First Name" width="w-full" onChange={(e) => {updateFormState('firstName', e.target.value)}} />
+                        <FormInput value={Edit && updatedData ? updatedData.name.split(' ')[1] : formState.lastName} label="Last Name" type="text" placeholder="Last Name" width="w-full" onChange={(e) => {updateFormState('lastName', e.target.value)}} />
                     </div>
 
                     {/* store name */}
-                    <FormInput value={Edit && value ? value.storeName : formState.storeName} label="Store Name" type="Text" placeholder="Enter Value" width="w-full" onChange={(e) => {updateFormState('storeName', e.target.value)}} />
+                    <FormInput value={Edit && updatedData ? updatedData.store.name : formState.storeName} label="Store Name" type="Text" placeholder="Enter Value" width="w-full" onChange={(e) => {updateFormState('storeName', e.target.value)}} />
                     
                     {/* email */}
-                    <FormInput value={Edit && value ? value.email : formState.email} label="Email" type="email" placeholder="Enter Email" width="w-full" onChange={(e) => {updateFormState('email', e.target.value)}} />
+                    <FormInput value={Edit && updatedData ? updatedData.email : formState.email} label="Email" type="email" placeholder="Enter Email" width="w-full" onChange={(e) => {updateFormState('email', e.target.value)}} />
                     
                     {/* Password */}
-                    <FormInput value={Edit && value ? value.password : formState.password} label="Password" type="password" placeholder="Enter Password" width="w-full" onChange={(e) => {updateFormState('password', e.target.value)}} />
+                    <FormInput label="Password" type="password" placeholder="Enter Password" width="w-full" onChange={(e) => {updateFormState('password', e.target.value)}} />
                     
                     {/* Phone Section */}
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Phone Number 01</label>
                         <div className="grid grid-cols-[100px_1fr] gap-4 justify-center items-center">
                             <Select key="form-select-key" shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title={'+213'} options={phoneCode} bgColor="bg-white" isDisabled={true} onSelect={(e) => updateFormState('countryNumber_1', (e.target as HTMLElement).innerHTML)} />
-                            <FormInput value={Edit && value ? value.phone_1 : formState.phone_1} label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {updateFormState('phone_1', e.target.value)}} />
+                            <FormInput value={Edit && updatedData ? updatedData.phone[0] : formState.phone_1} label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {updateFormState('phone_1', e.target.value)}} />
                         </div>
                     </div>
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Phone Number 01</label>
                         <div className="grid grid-cols-[100px_1fr] gap-4 items-center">
                             <Select key="form-select-key" shadow="shadow-md" width="w-[100px]" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title={'+213'} options={phoneCode} bgColor="bg-white" isDisabled={true} onSelect={(e) => updateFormState('countryNumber_2', (e.target as HTMLElement).innerHTML)} />
-                            <FormInput value={Edit && value ? value.phone_2 : formState.phone_2} label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {updateFormState('phone_2', e.target.value)}} />
+                            <FormInput value={Edit && updatedData ? updatedData.phone[1] : formState.phone_2} label="" type="text" placeholder="Enter Phone" width="w-full" onChange={(e) => {updateFormState('phone_2', e.target.value)}} />
                         </div>
                     </div>
                 
@@ -87,7 +89,7 @@ const Form: React.FC<FormProps> = ({onClose, Edit, value}) => {
                     </div>
                     
                     {/* Adress */}
-                    <FormInput value={Edit && value ? value.address : formState.address} label="Address" type="text" placeholder="Enter Address" width="w-full" onChange={(e) => {updateFormState('address', e.target.value)}} />
+                    <FormInput  label="Address" type="text" placeholder="Enter Address" width="w-full" onChange={(e) => {updateFormState('address', e.target.value)}} />
                     
                     {/* Sepciality */}
                     <div className="flex flex-col">
@@ -98,7 +100,7 @@ const Form: React.FC<FormProps> = ({onClose, Edit, value}) => {
                     {/* Start Date */}
                     <div className="flex flex-col">
                         <label className="text-sm text-[#44536F]">Start Date</label>
-                        <FormInput value={Edit && value ? value.startDate : formState.startDate} label="" type="date" placeholder="Enter Date" width="w-full" onChange={(e) => {updateFormState('startDate', e.target.value)}} />
+                        <FormInput value={Edit && updatedData ? updatedData.startDate : formState.startDate} label="" type="date" placeholder="Enter Date" width="w-full" onChange={(e) => {updateFormState('startDate', e.target.value)}} />
                     </div>
                 
                 </div>
@@ -123,7 +125,7 @@ const Form: React.FC<FormProps> = ({onClose, Edit, value}) => {
                     <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title="EN | Language" options={language} bgColor="bg-white" width="w-[200px]" isDisabled={true} onSelect={(e) => updateFormState('language', (e.target as HTMLElement).innerHTML)} />
                     <div className="flex flex-row gap-4">
                         <button className="bg-gray-400/50 text-white px-4 py-2 rounded-md" onClick={() => onClose()}>Cancel</button>
-                        <button className="bg-[#FF3D00] text-white px-4 py-2 rounded-md" onClick={() => {addPertner({...formState}); console.log(formState)}}>Create</button>
+                        <button className="bg-[#FF3D00] text-white px-4 py-2 rounded-md" onClick={() => {addPertner({...formState});}}>Create</button>
                     </div>
                 </div>
                 
