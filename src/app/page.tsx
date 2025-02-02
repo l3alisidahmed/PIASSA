@@ -8,6 +8,7 @@ import IconCard from "@/components/ui/IconCard";
 import { useState } from "react";
 import Modal from "@/components/ui/Modal";
 import Form from "@/components/ui/Form";
+import { motion } from "framer-motion";
 
 
 /**
@@ -29,7 +30,12 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="flex flex-col">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }} 
+      className="flex flex-col"
+    >
       <div className="grid grid-cols-[1fr_100px] gap-5">
         <div>
           <TopBar />
@@ -52,6 +58,6 @@ export default function Home() {
         </div>
       </div>
       <Table />
-    </div>
+    </motion.div>
   );
 }
