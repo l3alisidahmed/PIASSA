@@ -10,41 +10,59 @@ import Delete from "./Delete";
 import * as motion from "motion/react-client";
 import ExitAnimation from "./ExitAnimation";
 import { PartnerType } from "@/providers/FormProvider";
+import { useUpdate } from "@/providers/UpdateProvider";
 
 
-const PartnerCard = ({ partner, partnerKey }: { partnerKey?:string | number, partner: PartnerType }) => {
+const PartnerCard = ({ partner, partnerKey }: { partnerKey?: number, partner: PartnerType }) => {
+
+    const { 
+        setElementID, 
+        getDataByID, 
+        edit, 
+        setEdit, 
+        view, 
+        setView, 
+        remove, 
+        setRemove 
+    } = useUpdate();
 
     const [isOpen, setIsOpen] = useState(false);
-    const [edit, setEdit] = useState(false);
-    const [view, setView] = useState(false);
-    const [remove, setRemove] = useState(false);
-    const [editData, setEditData] = useState<{ [key: string]: string }>({})
     
     const dropDownRef = useRef<HTMLDivElement>(null);
     
     useEffect(() => {
-        if (dropDownRef.current?.parentElement) {
-            const data: { [key: string]: string } = {};
-            dropDownRef.current?.parentElement?.childNodes[0].childNodes.forEach((element) => {
-                element.childNodes.forEach((elementChild) => {
-                    const childElement = elementChild as HTMLElement;
-                    if (childElement.textContent) {
-                        data[`${childElement.id}`] = childElement.textContent;
-                    }
-                });
-            });
-            setEditData(data);
-        }
-
+        const id = dropDownRef.current?.parentElement?.id ?? '';
+        setElementID(id);
     }, [isOpen])
 
     const handleClicked = () => {
         setIsOpen(!isOpen);
     }
+
+    const handleEditClicked = () => {
+        setEdit(!edit);
+        setRemove(false);
+        setView(false);
+        if (edit) {
+            getDataByID();
+        }
+    }
+
+    const handleViewClicked = () => {
+        setView(!view);
+        setRemove(false);
+        setEdit(false);
+    }
+
+    const handleRemoveClicked = () => {
+        setRemove(!remove);
+        setEdit(false);
+        setView(false);
+    }
     
     return (
         <>
-            <div key={partnerKey} className={`relative grid ${isOpen ? 'grid-cols-[1fr_250px] right-20' : 'grid-cols-[1fr_100px]'} gap-5`}>
+            <div id={`${partnerKey}`} className={`relative grid ${isOpen ? 'grid-cols-[1fr_250px] right-20' : 'grid-cols-[1fr_100px]'} gap-5`}>
                 <div className="w-full p-5 flex flex-partner justify-between items-center bg-white text-black">
                     <div className="flex flex-col gap-2 justify-start">
                         <p id="name">{partner.name}</p>
@@ -79,9 +97,9 @@ const PartnerCard = ({ partner, partnerKey }: { partnerKey?:string | number, par
                     </button>
                     {isOpen ? (
                         <motion.div initial={{x: -150 }} animate={{x:0}} transition={{stiffness: 120}} exit={{x:100}} className="absolute right-10 flex flex-row gap-2">
-                            <IconCard icon={<Pencil size={30} />} bgColor="rgba(255, 255, 255, 0.3)" onClick={() => {setEdit(!edit);setRemove(false);setView(false);}} />
-                            <IconCard icon={<Eye size={30} />} bgColor="rgba(255, 255, 255, 0.3)" onClick={() => {setView(!view);setRemove(false);setEdit(false);}} />
-                            <IconCard icon={<Trash2 size={30} />} bgColor="rgba(255, 255, 255, 0.3)" onClick={() => {setRemove(!remove);setEdit(false);setView(false);}} />
+                            <IconCard icon={<Pencil size={30} />} bgColor="rgba(255, 255, 255, 0.3)" onClick={handleEditClicked} />
+                            <IconCard icon={<Eye size={30} />} bgColor="rgba(255, 255, 255, 0.3)" onClick={handleViewClicked} />
+                            <IconCard icon={<Trash2 size={30} />} bgColor="rgba(255, 255, 255, 0.3)" onClick={handleRemoveClicked} />
                         </motion.div>
                     ) : null}
                 </div>
@@ -93,7 +111,7 @@ const PartnerCard = ({ partner, partnerKey }: { partnerKey?:string | number, par
             }
             {(edit && isOpen) &&
                 <ExitAnimation> 
-                    <Edit onClose={() => setEdit(false)}  value={editData}/>
+                    <Edit onClose={() => setEdit(false)}/>
                 </ExitAnimation>
             }
             {(remove && isOpen) &&
