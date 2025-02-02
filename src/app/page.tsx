@@ -43,7 +43,7 @@ export default function Home() {
           </div>
           <Modal showModal={showModal} onClose={() => setShowModal(false)}>
             <div className="bg-white/80 shadow-lg backdrop-blur-[60px] p-10 rounded-lg">
-              <Form onClose={() => setShowModal(false)}/>
+              <Form onClose={() => setShowModal(false)} value={{}}/>
             </div>
           </Modal>
         </div>
