@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { PartnerType } from "./FormProvider";
 import { useForm } from "./FormProvider";
 
@@ -33,8 +33,14 @@ const UpdateProvider = ({children}:{children: React.ReactNode}) => {
 
     const getDataByID = () => {
         const data = partnerData.filter((partner: PartnerType, index: number) => index === +elementID ? partner : null);
-        setUpdatedData(data[0]);
+        if (data) setUpdatedData(data[0]);
     }
+
+    useEffect(() => {
+        if (elementID !== null) {
+            getDataByID();
+        }
+    }, [elementID]);
 
     const deletePartnerByID = () => {
         const data = partnerData.filter((partner: PartnerType, index: number) => index !== +elementID ? partner : null);

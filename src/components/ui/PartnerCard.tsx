@@ -16,8 +16,7 @@ import { useUpdate } from "@/providers/UpdateProvider";
 const PartnerCard = ({ partner, partnerKey }: { partnerKey?: number, partner: PartnerType }) => {
 
     const { 
-        setElementID, 
-        getDataByID, 
+        setElementID,  
         edit, 
         setEdit, 
         view, 
@@ -43,9 +42,6 @@ const PartnerCard = ({ partner, partnerKey }: { partnerKey?: number, partner: Pa
         setEdit(!edit);
         setRemove(false);
         setView(false);
-        if (edit) {
-            getDataByID();
-        }
     }
 
     const handleViewClicked = () => {
