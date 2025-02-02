@@ -15,7 +15,7 @@ const DataRow = () => {
         <div className="flex flex-col gap-5 overflow-auto h-[630px] scrollbar-hide">
             {search === "" ? (
                 partnerData.map((partner:PartnerType, index:number) => (
-                    <PartnerCard key={index} partner={partner} />
+                    <PartnerCard key={index} partner={partner} partnerKey={index} />
                 ))
             ) : (
                 partnerData.filter((partner:PartnerType) => partner.name.toLowerCase().includes(search.toLowerCase())).map((partner:PartnerType, index:number) => (
