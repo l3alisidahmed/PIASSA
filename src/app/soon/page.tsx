@@ -18,10 +18,10 @@ export default function ComingSoon() {
   return (
     <div className="flex flex-col items-center justify-center h-screen">
         <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
         >
         <h1 className="mb-8 text-6xl font-bold">Coming Soon</h1>
         <p className="mb-12 text-xl">We are working hard to bring you something amazing. Stay tuned!</p>
