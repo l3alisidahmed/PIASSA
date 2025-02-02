@@ -4,6 +4,7 @@ import "./globals.css";
 import Sidebar from "@/components/layouts/sidebar";
 import { FormProvider } from "@/providers/FormProvider";
 import SearchProvider from "@/providers/SearchProvider";
+import { UpdateProvider } from "@/providers/UpdateProvider";
 
 // Initialize Geist Sans font with specific variable and subset
 const geistSans = Geist({
@@ -41,7 +42,9 @@ export default function RootLayout({
             {/* Providers wrapping the children components */}
             <SearchProvider>
               <FormProvider>
-                {children}
+                <UpdateProvider>
+                  {children}
+                </UpdateProvider>
               </FormProvider>
             </SearchProvider>
           </div> 
