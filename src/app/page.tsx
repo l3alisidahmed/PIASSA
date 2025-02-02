@@ -10,6 +10,20 @@ import Modal from "@/components/ui/Modal";
 import Form from "@/components/ui/Form";
 
 
+/**
+ * The Home component is the main component for the home page.
+ * It includes a top bar, a button to add new partners, a modal for the form,
+ * an icon card, and a table.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Home />
+ * )
+ *
+ * @returns {JSX.Element} The rendered home page component.
+ */
+
 export default function Home() {
 
   const [showModal, setShowModal] = useState(false);
