@@ -84,7 +84,7 @@ const Form = ({onClose, Edit, value} : {value: {[key: string]: string}, Edit?: b
                     <Select key="form-select-key" shadow="shadow-md" borderWidth="border" borderStyle="border-solid" borderColor="border-[#D5D7DB]" textColor="text-black" title="EN | Language" options={language} bgColor="bg-white" width="w-[200px]" isDisabled={true} onSelect={(e) => updateFormState('language', (e.target as HTMLElement).innerHTML)} />
                     <div className="flex flex-row gap-4">
                         <button className="bg-gray-400/50 text-white px-4 py-2 rounded-md" onClick={() => onClose()}>Cancel</button>
-                        <button className="bg-[#FF3D00] text-white px-4 py-2 rounded-md" onClick={() => {Edit ? console.log(formState) : addPertner({...formState})}}>Create</button>
+                        <button className="bg-[#FF3D00] text-white px-4 py-2 rounded-md" onClick={() => {addPertner({...formState}); console.log(formState)}}>Create</button>
                     </div>
                 </div>
             </div>

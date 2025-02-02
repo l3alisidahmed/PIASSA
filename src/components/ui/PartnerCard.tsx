@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
-import { ChevronRight, Pencil, Eye, Trash2, ChevronLeft} from "lucide-react";
+import { ChevronRight, Pencil, Eye, Trash2} from "lucide-react";
 import IconCard from "./IconCard";
 import Select from "./Select";
 import Edit from "./Edit";
@@ -10,7 +10,6 @@ import Delete from "./Delete";
 import * as motion from "motion/react-client";
 import ExitAnimation from "./ExitAnimation";
 import { PartnerType } from "@/providers/FormProvider";
-import { log } from "node:console";
 
 
 const PartnerCard = ({ partner, partnerKey }: { partnerKey?:string | number, partner: PartnerType }) => {
@@ -24,14 +23,9 @@ const PartnerCard = ({ partner, partnerKey }: { partnerKey?:string | number, par
     const dropDownRef = useRef<HTMLDivElement>(null);
     
     useEffect(() => {
-        console.log(dropDownRef.current);
-        console.log(dropDownRef.current?.parentElement);
-        console.log(dropDownRef.current?.parentElement?.childNodes);
-        console.log(dropDownRef.current?.parentElement?.childNodes[0]);
-        console.log(dropDownRef.current?.parentElement?.childNodes[0].childNodes);
         if (dropDownRef.current?.parentElement) {
             const data: { [key: string]: string } = {};
-            dropDownRef.current?.parentElement?.childNodes[0].childNodes.forEach((element, index) => {
+            dropDownRef.current?.parentElement?.childNodes[0].childNodes.forEach((element) => {
                 element.childNodes.forEach((elementChild) => {
                     const childElement = elementChild as HTMLElement;
                     if (childElement.textContent) {
